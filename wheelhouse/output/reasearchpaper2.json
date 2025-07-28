@@ -1,0 +1,1920 @@
+{
+  "title": "University Hospital, Seoul, Republic of Korea.",
+  "outline": [
+    {
+      "level": "H3",
+      "text": "Seowoo Lee M.D. 1 , Jiwon Youn 2 , Hyungjin Kim M.D. 1 ,",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Mansu Kim Ph.D. 2† , Soon Ho Yoon M.D. Ph.D. 1†",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "1 Department of Radiology, Seoul National University College of Medicine, Seoul National",
+      "page": 1
+    },
+    {
+      "level": "H1",
+      "text": "CXR-LLAVA: a multimodal large language model for interpreting chest X-",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "ray images",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Abstract",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Introduction",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "(CNNs) and vision transformers (ViTs), have profoundly impacted radiology 1-3 . Numerous deep",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "generation to translation 4 . The integration of natural language processing and image processing",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "contrastive language-image pre-training (CLIP) 5 and the bootstrapping language-image pre-training",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "generate detailed captions 6 .",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "range of visual tasks 7 . However, it remains unclear how effective these general-purpose models are at",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "model is not publicly available 8 . Similarly, the open-source LLAVA-MED, a model fine-tuned for the",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "CXRs remain limited 9 .",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "impacting the accuracy of radiologic diagnoses 10 . In response, numerous studies have explored the",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "use of deep learning models to improve diagnostic accuracy and reduce the burden on radiologists. 11",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Materials and Methods",
+      "page": 6
+    },
+    {
+      "level": "H3",
+      "text": "utilized the Large Language Model Meta AI (LLAMA)-2 as our language model. 12 We selected the",
+      "page": 6
+    },
+    {
+      "level": "H3",
+      "text": "The image encoder transformed a CXR image ( 𝒙 𝒊𝒎𝒈 ) into a representation ( 𝒛 𝐢𝐦𝐠 ) and then classified",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "In the second step, the image encoder, 𝑓(𝒙 𝒊𝒎𝒈 ) , was further trained based on the CLIP",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "strategy to learn complex representations of radiological term. (Figure 1B) 5 Specifically, the image",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "encoder, 𝑓(𝒙 𝒊𝒎𝒈 ) and pretrained text encoder, ℎ(𝒙 𝒕𝒆𝒙𝒕",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": ") from prior research 13 were employed to",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "compute the contrastive loss between the image vector ( 𝒛 𝐢𝐦𝐠 ) and text vectors ( 𝒛 𝐭𝐞𝐱𝐭",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": ") (i.e., 𝒛 𝐢𝐦𝐠 =",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "𝑓(𝒙 𝒊𝒎𝒈 ) and 𝒛 𝐭𝐞𝐱𝐭= ℎ(𝒙 𝒕𝒆𝒙𝒕",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": ") ). In our study, we choose 𝒌 keywords as 𝒙 𝒕𝒆𝒙𝒕",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "matrix ( 𝑷 ). The aligned image representation (i.e., <image> = 𝑷× 𝒛 𝐢𝐦𝐠 ) was computed by updating",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "images and accompanying free text radiologic reports. 14 These were not used during the model's",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "other, pneumonia, pneumothorax, and support devices 15 . For external model testing, we used a",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "dataset from Indiana University, consisting of 3689 pairs of images and free-text radiologic reports 16 .",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Medical Licensing Examination tests 17,18 . However, LLAVA-MED, a model fine-tuned for medical",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "not included in this analysis 8,19 .",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "we utilized CheXpert-Labeler to generate pathological labels 15 . This tool analyzes free-text radiologic",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "CheXzero model exhibited expert-level pathology detection capabilities 20 . Therefore, we evaluated",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "Results",
+      "page": 12
+    },
+    {
+      "level": "H1",
+      "text": "Discussion",
+      "page": 14
+    },
+    {
+      "level": "H1",
+      "text": "Data Availability",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "BrixIA COVID-19 dataset 21",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "CheXpert train/validation dataset 15",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "NIH dataset 22",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "PadChest dataset 23",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "Challenge 24",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "VinDR dataset 25",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "MIMIC dataset 14",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "CheXpert test dataset 15",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "CheXpert train/validation dataset 15",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "Indiana University dataset 16",
+      "page": 16
+    },
+    {
+      "level": "H1",
+      "text": "Code Availability",
+      "page": 16
+    },
+    {
+      "level": "H1",
+      "text": "References",
+      "page": 17
+    },
+    {
+      "level": "H1",
+      "text": "Tables",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "19 dataset 21",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "dataset 15",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "NIH dataset 22",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "dataset 23",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "Challenge 24",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "selected) 14",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "dataset 15",
+      "page": 20
+    },
+    {
+      "level": "H2",
+      "text": "dataset 16",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "The model achieved an excellent average F1 score of 0.81, outperforming the GPT-4-vision and Gemini-Pro-",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Vision models, which scored 0.62 and 0.68, respectively.",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Note: In our analysis, specific labels such as “lung lesion,” “lung opacity,” “atelectasis,” “pleural other,”",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "“fracture,” and “support devices” were excluded due to their low frequency, being under 5% in either the",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "negative or positive class or having a sample number below 10, which makes them statistically less significant",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "for a balanced analysis. Additionally, the label “enlarged cardiomediastinum” was not included as it significantly",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "overlaps with “cardiomegaly,” which could lead to redundant data interpretations.",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "The model attained an average F1 score of 0.57 for five key pathologies, which was marginally lower than",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "CheXzero (0.61) and human radiologists (0.62). However, it demonstrated exceptional capability in identifying",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "lung opacity, support devices, and atelectasis.",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "F1 scores of each pathologic label in the CheXpert internal test set",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Models",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "CXR-LLAVA",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "GPT-4-vision",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Gemini-Pro-",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Vision",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "Human",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Atelectasis",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.69 (0.64, 0.74)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.00 (0.00, 0.00)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.04 (0.00, 0.08)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.65 (0.59, 0.70)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.69 (0.65, 0.73)",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Cardiomegaly",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.62 (0.56, 0.67)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.46 (0.42, 0.51)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.39 (0.33, 0.45)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.74 (0.69, 0.79)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.68 (0.63, 0.72)",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Consolidation",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.24 (0.17, 0.31)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.00 (0.00, 0.00)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.11 (0.07, 0.15)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.33 (0.24, 0.42)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.39 (0.28, 0.49)",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Edema",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.50 (0.43, 0.57)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.05 (0.00, 0.11)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.19 (0.11, 0.26)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.60 (0.52, 0.68)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.58 (0.51, 0.65)",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Pleural effusion",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.63 (0.57, 0.69)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.41 (0.34, 0.47)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.03 (0.00, 0.09)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.70 (0.63, 0.76)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.74 (0.69, 0.78)",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Average for the",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "5 pathologies",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.57 (0.54, 0.59)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.35 (0.32, 0.39)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.19 (0.17, 0.22)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.61 (0.57, 0.64)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.62 (0.59, 0.64)",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Lung opacity",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.84 (0.81, 0.87)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.71 (0.66, 0.75)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.68 (0.64, 0.72)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "N/A",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "N/A",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Support devices",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.78 (0.74, 0.82)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.72 (0.69, 0.76)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.70 (0.66, 0.74)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "N/A",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "N/A",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Overall average",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.67 (0.65, 0.69)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.53 (0.51, 0.55)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "0.45 (0.43, 0.47)",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "N/A",
+      "page": 22
+    },
+    {
+      "level": "H2",
+      "text": "N/A",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Note: unbalanced labels like “lung lesion,” “pneumonia,” “pneumothorax,” “pleural other,” and “fracture,”",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "which had a frequency of less than 5% in either the negative or positive class, were not included in the analysis.",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Additionally, the label “enlarged cardiomediastinum” was not included as it significantly overlaps with",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "“cardiomegaly,” which could lead to redundant data interpretations.",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "The model achieved an overall average F1 score of 0.62, excelling particularly in the detection of cardiomegaly",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "(0.62), edema (0.67), and lung opacity (0.85). However, its performance in detecting pneumothorax was notably",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "lower (0.05).",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "Note: we excluded labels that were unbalanced, with fewer than 10 samples in either the negative or positive",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "category. This included labels such as “lung lesion,” “atelectasis,” “pleural other,” “fracture,” and “support",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "devices.” These were omitted to ensure statistical relevance and balance in the analysis. Additionally, the label",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "“enlarged cardiomediastinum” was not included as it significantly overlaps with “cardiomegaly,” which could",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "lead to redundant data interpretations.",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "The model achieved a 51.3% rate (77 cases) of being “acceptable without any revision” (Class A), closely",
+      "page": 24
+    },
+    {
+      "level": "H3",
+      "text": "mirroring the 54.0% rate of the ground truth reports. The model's success rate for autonomous reporting (Class",
+      "page": 24
+    },
+    {
+      "level": "H3",
+      "text": "A+B) reached 72.7% (109 cases), slightly lower than the 84.0% for ground truth reports. This difference was",
+      "page": 24
+    },
+    {
+      "level": "H3",
+      "text": "statistically significant (p<0.001), highlighting the comparative capabilities and limitations of the model in",
+      "page": 24
+    },
+    {
+      "level": "H3",
+      "text": "autonomous radiologic reporting.",
+      "page": 24
+    },
+    {
+      "level": "H1",
+      "text": "Figures",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "CXRs, thereby acquiring fundamental representations of CXRs. (B) Subsequently, the model underwent training with pairs of CXRs and their corresponding pathological",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "findings. This training employed the contrastive language-image pre-training (CLIP) strategy to foster shared representations between images and text. (C) The image",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "encoder was then assimilated into CXR-LLAVA, initiating the alignment of image representations with the large language model (LLM). In this phase, training focused on",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "pairs of CXR images and radiologic reports, with updates confined to the projection layer. (D) Upon successful alignment of the image encoder with the LLM, an",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "instruction fine-tuning process was undertaken. This involved a variety of radiologic reports and question-answer pairs, aiming to refine the model's capability to interpret",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "CXRs and facilitate more informative interactions. Please note that the figure abstracts from the detailed neural network information, omitting elements such as tokenizer,",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "batch normalization, projection, and linear classification layers.",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "(a) Evaluation of datasets with ground-truth free-text radiologic reports, specifically the MIMIC internal test set and the Indiana external test set. Pathologic labels were",
+      "page": 27
+    },
+    {
+      "level": "H3",
+      "text": "obtained using the CheXpert labeler from both the original reports and the model-generated reports, with a subsequent comparison of these results.",
+      "page": 27
+    },
+    {
+      "level": "H3",
+      "text": "(b) Evaluation of datasets with established ground-truth pathologic labels, specifically the CheXpert internal test set, involved directly generating pathologic labels from",
+      "page": 27
+    },
+    {
+      "level": "H3",
+      "text": "the model using a label generation prompt.",
+      "page": 27
+    },
+    {
+      "level": "H3",
+      "text": "While the model identified the presence of pleural effusions, atelectasis, and lung opacity, it omitted details about the central catheter (support device).",
+      "page": 28
+    },
+    {
+      "level": "H3",
+      "text": "The model's interpretation included information about bilateral pulmonary nodules and suggested a possible diagnosis of lung metastasis or infection, which is reasonable.",
+      "page": 29
+    },
+    {
+      "level": "H3",
+      "text": "It also recommended that an additional chest CT scan might be helpful. However, the model could not detect the implanted venous access device.",
+      "page": 29
+    },
+    {
+      "level": "H3",
+      "text": "The model's interpretation identified right upper lobe consolidation and proposed pneumonia as a possible diagnosis, which is reasonable. Nonetheless, the model failed to",
+      "page": 30
+    },
+    {
+      "level": "H3",
+      "text": "detect a small left upper lung nodule (black arrow).",
+      "page": 30
+    },
+    {
+      "level": "H1",
+      "text": "Acknowledgements",
+      "page": 31
+    },
+    {
+      "level": "H1",
+      "text": "Detailed Architecture and Training Process of the CXR Image Encoder",
+      "page": 32
+    },
+    {
+      "level": "H2",
+      "text": "We have developed a CXR image encoder utilizing the vision transformer architecture 1 . Empirically,",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "“ViT-L/16” was selected to balance computational cost and performance. Following the training process, this",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "image encoder transforms CXR images (i.e., those with dimensions of 512x512 and single-channel) into a 128-",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "dimensional representation vector, which is subsequently employed for further analysis. Our approach employs a",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "two-staged training strategy to impart radiological context.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "In the initial training phase, we first pretrained the image encoder to distinguish between normal and",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "abnormal images. This was accomplished by adding a dense binary classifier to the image encoder. Specifically,",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "we used Dataset 1, and the implementation details are as follows. The model was initialized with random weights.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "It was trained for up to 100 epochs with a learning rate of 1e-3 using the SGD optimizer and a batch size of 64.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "Training was conducted for approximately two weeks on a single GPU (NVIDIA A100). The final model was",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "chosen based on the lowest validation loss, and the trained model showed an area under curve of receptor operator",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "characteristics of approximately 0.92 for the binary classification task.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "Subsequent to the initial training phase, we incorporated the CLIP (Contrastive Language-Image",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "Pretraining) method to further enhance the image encoder's ability to understand the relationship between text and",
+      "page": 32
+    },
+    {
+      "level": "H2",
+      "text": "CXR images 2 . Specifically, we utilized a text encoder based on the Bidirectional Encoder Representations from",
+      "page": 32
+    },
+    {
+      "level": "H2",
+      "text": "Transformers (BERT) from prior research 3 .  The trained image encoder was then integrated and trained to",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "minimize the contrastive loss between the image vector and text vector. In this step, we trained the encoders twice",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "with different datasets (Dataset 1 and 2). For the initial training stage with Dataset 1, we used pathology labels",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "that lacked location information for learning representation. To accelerate the learning speed, the text encoder was",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "frozen up to step 70k, and then it was unfrozen, and training continued. A learning rate of 1e-2 with an SGD",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "optimizer was used during this phase, and it took about a day using eight NVIDIA A100s. Training was halted",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "when the validation loss reached a plateau. In the subsequent training stage with Dataset 2, radiologic reports,",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "containing not only pathology but also the locations of the pathology, were used to learn the relationship between",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "text and CXR images. The model that demonstrated the lowest validation loss was ultimately selected.",
+      "page": 32
+    },
+    {
+      "level": "H1",
+      "text": "Detailed Architecture and Training Process of the CXR-LLaVA.",
+      "page": 32
+    },
+    {
+      "level": "H2",
+      "text": "We adopted the concept of LLaVA 4 for CXR-LLaVA, which comprises an image encoder trained in the",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "preceding process, a multimodal projection layer, and LLAMA2-7B-CHAT. When a text prompt and a CXR image",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "are input into this model, the LLAMA2 tokenizer initially converts the text prompt into a vector. Simultaneously,",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "the image encoder processes the CXR, producing 128x1024-dimensional image tokens from 512x512 images.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "These tokens are then transformed into a 5120-dimensional vector through the dense multimodal projection layer.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "The resulting 5120-dimensional vector is inserted into the specified location within the text prompt. Once it's fed",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "autoregressively into the causal LLM, a response is generated.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "The training process for CXR-LLaVA occurred in two stages. In the first stage, all layers except the",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "multimodal projection layer were frozen. Training was then conducted to align the image and text vector spaces.",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "This phase lasted for 1 epoch, using a learning rate of 2e-3 with the Adam optimizer, a batch size of 16, and took",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "about 4 hours on eight NVIDIA A100 40GB GPUs. In the second stage, only the image encoder was frozen, while",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "all other layers were set to be trainable, continuing the training. This stage was conducted over 3 epochs with a",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "learning rate of 2e-5, using the Adam optimizer, a batch size of 16, and took approximately 50 hours on the same",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "GPU setup. No validation was performed during the CXR-LLaVA training process, and the final model iteration",
+      "page": 32
+    },
+    {
+      "level": "H3",
+      "text": "was selected as the ultimate model.",
+      "page": 32
+    },
+    {
+      "level": "H1",
+      "text": "Refining the Radiologic Report and Preparing the LLM Fine-Tuning",
+      "page": 33
+    },
+    {
+      "level": "H1",
+      "text": "Dataset",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "The MIMIC dataset provides free-text radiology reports for CXRs. However, original radiology reports",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "are not suitable for use as LLAVA training data since they contain contextual information that cannot be inferred",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "from a single CXR, like comparisons with previous images and the patient's medical history. We used OpenAI",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "GPT-4 to remove such parts, and the prompt we used is as follows:",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "You are skillful radiologist and doing summarization of chest x-ray report.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Summarize these information from the report.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Answer to each questions as json format which have \"standard report\", \"conclusion\" and \"recommendation\" as",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "keys.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "1. \"standard_report\" : Write a standardized radiologic report as one paragraph. Standardized report must include",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "information about abnormality of lungs, mediastinum, heart and thorax.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "2. \"conclusion\" : What is the conclusion or impression of the radiologic report? Include only critical",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "information.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "3. \"recommendation\" : Should additional radiologic study needed? What type of study should be performed?",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Do not include any temporal or time information in standard_report and conclusion. DO NOT USE WORD",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "SUCH AS \"new\", \"previous\", \"comparison\", \"stable\", \"improved\", \"improving\", \"decreased\", \"increased\",",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "\"changed\", \"unchanged\", \"resolved\", or \"cleared\".",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Do not include information about 'comparison with prior study'.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Do not include information about lateral radiograph.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Replace any numeric information, such as millimeter or centimeter",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Remove any information about patient age, gender, and medical history.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Remove any under-bar & blank.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "Remove any information or location about catheter, chest tube, endotracheal tube, PICC, chemoport, central",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "line, nasogastric tube or other medical devices.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "In addition to simply generating radiologic report, we also created a Q&A dataset for each chest",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "radiograph to incorporate a question answering feature as follows:",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "\"question1\" : Compose a question from the perspective of a student radiologist, inquiring about the anatomical",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "location, number, or presence of pathology in the chest radiograph.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "\"answer1\" : Write an informative answer to question1.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "\"question2\" : Compose a question that asks possible differential diagnoses from this chest radiograph, without",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "referring to the patient's history.",
+      "page": 33
+    },
+    {
+      "level": "H3",
+      "text": "\"answer2\" : Write an informative answer to question2.",
+      "page": 33
+    },
+    {
+      "level": "H1",
+      "text": "Label Distribution in the MIMIC Internal Test Set",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "The MIMIC internal test set provides labels for 14 findings. Their distribution is as follows:",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Negative",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Positive",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Enlarged Cardiomediastinum",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "661",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "114",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Cardiomegaly",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "255",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "756",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Lung Opacity",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "2",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "17",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Lung Lesion",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "11",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "369",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Edema",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "416",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "53",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Consolidation",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "175",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "255",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Pneumonia",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "1183",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "703",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Atelectasis",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "12",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "416",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Pneumothorax",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "63",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "73",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Pleural Effusion",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "1206",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "173",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Pleural Other",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "0",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "3",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Fracture",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "0",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "7",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "Support Devices",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "3",
+      "page": 34
+    },
+    {
+      "level": "H3",
+      "text": "134",
+      "page": 34
+    },
+    {
+      "level": "H1",
+      "text": "Label Distribution in the CheXpert Internal Test Set",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "The CheXpert internal test set provides labels for 14 findings. Their distribution is as follows:",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Negative",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Positive",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "No Finding",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "450",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "68",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Enlarged Cardiomediastinum",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "262",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "256",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Cardiomegaly",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "364",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "154",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Lung Opacity",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "246",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "272",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Lung Lesion",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "509",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "9",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Edema",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "439",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "79",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Consolidation",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "489",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "29",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Pneumonia",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "507",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "11",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Atelectasis",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "360",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "158",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Pneumothorax",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "509",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "9",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Pleural Effusion",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "413",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "105",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Pleural Other",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "518",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "0",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Fracture",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "513",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "5",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "Support Devices",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "252",
+      "page": 35
+    },
+    {
+      "level": "H3",
+      "text": "266",
+      "page": 35
+    },
+    {
+      "level": "H1",
+      "text": "Label Distribution in the Indiana External Test Set",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "The Indiana external test set provides free-text radiology reports. We extracted labels from radiology",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "reports using CheXpert-Labeler. Their distribution is as follows:",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Negative",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Positive",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Enlarged Cardiomediastinum",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "1105",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "84",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Cardiomegaly",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "727",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "371",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Lung Lesion",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "3",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "7",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Consolidation",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "285",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "15",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Edema",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "109",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "14",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Lung Opacity",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "68",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "154",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Pleural Effusion",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "2295",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "118",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Atelectasis",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "1",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "77",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Pneumonia",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "57",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "23",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Pneumothorax",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "1427",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "27",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Pleural Other",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "0",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "1",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Fracture",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "1",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "1",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "Support Devices",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "3",
+      "page": 36
+    },
+    {
+      "level": "H3",
+      "text": "9",
+      "page": 36
+    },
+    {
+      "level": "H1",
+      "text": "References",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "1",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "He, K., Zhang, X., Ren, S. & Sun, J. in Proceedings of the IEEE conference on computer vision and",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "pattern recognition.  770-778.",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "2",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "Radford, A. et al. in International conference on machine learning.  8748-8763 (PMLR).",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "3",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "Boecking, B. et al. in European conference on computer vision.  1-21 (Springer).",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "4",
+      "page": 37
+    },
+    {
+      "level": "H3",
+      "text": "Liu, H., Li, C., Wu, Q. & Lee, Y. J. Visual instruction tuning. arXiv preprint arXiv:2304.08485 (2023).",
+      "page": 37
+    }
+  ]
+}

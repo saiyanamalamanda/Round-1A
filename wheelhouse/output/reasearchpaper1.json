@@ -1,0 +1,2210 @@
+{
+  "title": "𝑄𝐾 ⊤",
+  "outline": [
+    {
+      "level": "H3",
+      "text": "Hong-Yu Zhou 1,& , Yizhou Yu 1,&, *, Chengdi Wang 2,&, *, Shu Zhang 3 , Yuanxu Gao 4,5,6 , Jia Pan 1 , Jun Shao 2 ,",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Guangming Lu 8 , Kang Zhang 4,5,6,7 *, and Weimin Li 2, *",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "1 Department of Computer Science, The University of Hong Kong, Pokfulam, Hong Kong, China",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "2 Department of Respiratory and Critical Care Medicine, Med-X Center for Manufacturing, Frontiers Science",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "3 AI Lab, Deepwise Healthcare, Beijing, China, 100080",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "4 Zhuhai International Eye Center, Zhuhai People’s Hospital and the First Affiliated Hospital of Faculty of",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "5 Department of Big Data and Biomedical Artificial Intelligence, College of Future Technology, Peking",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "6 Guangzhou Laboratory, Guangzhou, China, 510005",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "7 Clinical Translational Research Center, West China Hospital, Sichuan University, Chengdu, China, 610041",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "8 Department of Medical Imaging, Jinling Hospital, Nanjing University School of Medicine, Nanjing, Jiangsu,",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "& These authors contributed equally",
+      "page": 1
+    },
+    {
+      "level": "H2",
+      "text": "optimal diagnoses by jointly interpreting such multimodal data 1,2 . The importance of exploiting multimodal",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "clinical information has been extensively verified in the literature 3-10 in different specialties, including but not",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "To meet the increasing demand for precision medicine, machine learning techniques 11 have become the de",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "deep learning 12,13 endows machine learning models with the ability to detect diseases from medical images",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "near or at the level of human experts 14-18 .",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "current multimodal clinical decision support systems 19-23 mostly lean upon a non-unified way to fuse",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "modalities at the feature or prediction level, these non-unified methods can be further categorized into early 19-",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "22 or late fusion 23 methods.",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "natural language processing (NLP) tools. On the other hand, Transformer-based architectures 24 are poised",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "to broadly reshape natural language processing 25 and computer vision 26 . Compared to convolutional neural",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "networks 27 and word embedding algorithms 28,29 , Transformers 24 impose few assumptions about the input",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "remains nearly unchanged across different modalities 25,26 , providing an opportunity to build a unified yet",
+      "page": 2
+    },
+    {
+      "level": "H2",
+      "text": "IRENE shares some common traits with vision-language fusion models 29-33 , both of which aim to learn a joint",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "fusion approaches 31-33 heavily rely on the distillation and exploitation of common semantic information among",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "process described in previous study 16 , and taken as the ground-truth disease labels. The discharge summary",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "The second dataset MMC (i.e., multimodal COVID-19 dataset) 19 , on which IRENE is trained and evaluated,",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "outperforms the image-only model, traditional non-unified early 19 and late fusion 23 methods, and two recent",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "state-of-the-art Transformer-based multimodal methods (i.e., Perceiver 30 and GIT 33 ) in identifying pulmonary",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "0.237, 0.391]), early fusion model 22 (0.521, [95% CI: 0.435, 0.614]), and late fusion model 23 (0.503, [95%:",
+      "page": 4
+    },
+    {
+      "level": "H2",
+      "text": "test items, which are consistent with the observations reported in the literature 34 . Nonetheless, we see that",
+      "page": 5
+    },
+    {
+      "level": "H2",
+      "text": "information. We compare IRENE to GIT 33 and Perceiver 30 , two representative Transformer-based models",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "structuralization. Recent text structuralization pipelines in non-unified approaches 19-23 severely rely on artificial",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "diagnostic tools using either text-based electronic health records 35 or images 36 , this study describes an AI",
+      "page": 7
+    },
+    {
+      "level": "H2",
+      "text": "with this problem, we can refer to masked modeling 25 . For instance, during the training stage, we can randomly",
+      "page": 7
+    },
+    {
+      "level": "H2",
+      "text": "diagnosis model on top of ViT 26 , one of the most well-known and widely adopted Transformer-based",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "block consists of one self-attention layer 24 , one multi-layer perceptron (MLP), and two layer normalization",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "layers 37 . There are two fully-connected (FC) layers in each MLP, where the number of hidden nodes is",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "function 38 . After each FC layer, we add a dropout layer 39 , where we set the dropout rate to 0.3. The",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "supervised ViT pre-training on MIMIC-CXR 40 to obtain visual representations with more generalization",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "power. In the task of rapid triage of COVID-19 patients, as in 22 , we first segment pneumonia lesions from",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "reported in previous study 19 for our first task (i.e., pulmonary disease identification). In practice, a ViT",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "CXR 40 was applied to the ViT to obtain more powerful visual features before we carry out the formal task.",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "complaint. Next, we use BERT 25 to extract features for all such symptoms, to which average pooling is",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "predictions of the image- and text-based classifiers inspired by 23 . Specifically, we train a ViT model with",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "In the second task, we follow the early fusion method proposed in 22 , where image features, structured",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "introduced in 22 . For the late fusion baseline, we train five machine learning models (i.e., logistic regression,",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "random forest, support vector machine, MLP, and LightGBM) following the protocol used in 22 for image",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "GIT. GIT 33 is a generative image-to-text Transformer that unifies vision-language tasks. We take GIT-",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "consists of six standard Transformer blocks 24 . In practice, we fine-tune the officially released pre-trained",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "Perceiver. This is a very recent state-of-the-art Transformer-based model 30 from DeepMind, proposed",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "30 , i.e., Perceiver IO 41 , which introduces the output query on top of Perceiver to handle additional types",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "ImageNet classification 42 in previous study 30 , and has six cross-attention modules. Each cross-attention",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "of two arrays: the latent array and byte array. Following 30 , we initialize the latent array using a truncated",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "the image-only and non-unified baselines, we pre-trained Perceiver on MIMIC-CXR 40 . During pre-training,",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "results, each patient's gender, and age, which are denoted as 𝑥 𝐼 , 𝑥 𝑐𝑐 , 𝑥 𝑙𝑎𝑏 , 𝑥 𝑠𝑒𝑥 , and 𝑥 𝑎𝑔𝑒 , respectively. We",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "pass 𝑥 𝐼 to a convolutional layer, which produces a sequence of visual tokens. Next, we add standard learnable",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "1D positional embedding 21,23 and dropout to every visual token to obtain a sequence of image patch tokens",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "𝑋 1:𝑁",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "𝐼 . Meanwhile, we apply word tokenization to 𝑥 𝑐𝑐 to encode each word from the unstructured chief complaint .",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "Specifically, we use a pre-trained BERT 23 to generate an embedded feature vector for each word in 𝑥 𝑐𝑐 , after",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "which we obtain a sequence of word tokens 𝑋 1:𝑁 𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": ". We also apply a similar tokenization procedure to 𝑥 𝑙𝑎𝑏 ,",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "where min-max scaling is first employed to normalize every component of 𝑥 𝑙𝑎𝑏 . We then pass each normalized",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "component to a shared linear projection layer to obtain a sequence of latent embeddings 𝑋 1:𝑁 𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "perform linear projections on 𝑥 𝑠𝑒𝑥 and 𝑥 𝑎𝑔𝑒 to obtain encoded feature vectors 𝑋 𝑠𝑒𝑥 and 𝑋 𝑎𝑔𝑒 . Subsequently,",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "we concatenate {𝑋 1:𝑁 𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": ", 𝑋 1:𝑁 𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": ", 𝑋 𝑠𝑒𝑥 ,  𝑋 𝑎𝑔𝑒 } together to produce a sequence of clinical text tokens 𝑋 1:𝑁̂",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑇 , where",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑁 ̂ = 𝑁 𝑐𝑐 + 𝑁 𝑙𝑎𝑏 + 2 . In practice, we set 𝑁 𝑐𝑐 and 𝑁 𝑙𝑎𝑏 to 40 and 92, respectively.",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "test results, each patient's gender and age, which are denoted as 𝑥 𝐼 , 𝑥 𝑐𝑐 , 𝑥 𝑙𝑎𝑏 , 𝑥 𝑠𝑒𝑥 , and 𝑥 𝑎𝑔𝑒 . Each CT slice",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "is converted to a sequence of image patch tokens 𝑋 1:𝑁",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝐼 as in the first task. Different from the first task, the chief",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "complaint is structured. To convert 𝑥 𝑐𝑐 to tokens, we conduct a shared linear projection to each component,",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "which generates a sequence of embeddings 𝑋 1:𝑁 𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": ". A linear projection layer is applied to 𝑥 𝑙𝑎𝑏 to acquire 𝑋 1:𝑁 𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "As for 𝑥 𝑠𝑒𝑥 and 𝑥 𝑎𝑔𝑒 , we perform linear projections to obtain encoded 𝑋 𝑠𝑒𝑥 and 𝑋 𝑎𝑔𝑒 as in the first task. Finally,",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "we directly concatenate {𝑋 1:𝑁 𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑐𝑐",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": ", 𝑋 1:𝑁 𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑙𝑎𝑏",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": ", 𝑋 𝑠𝑒𝑥 ,  𝑋 𝑎𝑔𝑒 } to produce 𝑁 ̂ clinical text tokens 𝑋 1:𝑁̂",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑇 , where 𝑁̂ = 𝑁 𝑐𝑐 +",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑁 𝑙𝑎𝑏 + 2 . We set 𝑁 𝑐𝑐 and 𝑁 𝑙𝑎𝑏 to 16 and 19, respectively.",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "the first bi-directional multimodal attention block consists of X 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 and X 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 , where l (= 0) stands for the layer index,",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑋 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "0 = 𝑋 1:𝑁",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝐼 denotes the assembly of image patch tokens, and 𝑋 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "0 = 𝑋 1:𝑁̂",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑇 represents the bag of clinical text tokens.",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Q 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , K 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , V 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 = LP ( Norm (X 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 )),",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Q 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , K 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , V 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 = LP ( Norm (X 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 )),",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝔛 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 = Attention (𝑄 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 ) + λ Attention(𝑄 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 ) ,",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝔛 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 = Attention (𝑄 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 ) + λ Attention (𝑄 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 ) ,",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "where Attention (𝑄 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 ) and Attention (𝑄 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 ) capture the intra-modal connections in the image and text",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "modalities, respectively. Attention (𝑄 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 ) and Attention (𝑄 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝐾 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝑉 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 ) dig out the inter-modal connections",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "representations 𝔛 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 and 𝔛 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙 . We set λ to 1.0 as it gave rise to the best performance in our preliminary",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "√𝑑 𝑘 𝑉) ,",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "we introduce residual learning 43 and forward the resulting 𝔛 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 , 𝔛 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 to the following normalization layer and MLP:",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑋 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙+1 = MLP ( Norm (𝔛 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 )) + +𝑋 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 ,",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑋 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "𝑙+1 = MLP ( Norm (𝔛 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 )) + +𝑋 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙 ,",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑋 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙+1 and 𝑋 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙+1 are passed to the next bi-directional multimodal attention block as the input, resulting in 𝑋 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "𝑙+2",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "and 𝑋 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙+2 . Then, we combine tokens in 𝑋 𝐼",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙+2 and 𝑋 𝑇",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "𝑙+2 to produce a bag of unified tokens, which are passed to",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "the following self-attention blocks 24 . We also allocate multiple heads 24 in both bi-directional multimodal",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "scans. We first use the lesion detection and segmentation methodologies proposed in 44 . This is a deep",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "learning algorithm based on a multi-view feature pyramid convolutional neural network 45,46 , which performs",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "Before we perform the formal training procedure, we pre-trained our MDT on MIMIC-CXR 40 , as what we have",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "textual clinical information in every multimodal input. In the formal training stage, we use AdamW 47 as the",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "in all ViT models. IRENE is implemented using PyTorch 48 and the training stage is accelerated using NVIDIA",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "Apex with the mixed-precision strategy 49 . In practice, we can finish the training stage of either task within one",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "For cross-attention results, we perform visualization with Grad-CAM 50 .",
+      "page": 11
+    },
+    {
+      "level": "H3",
+      "text": "Method",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Mean",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "COPD",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Bronchiectasis",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Pneumothorax",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Pneumonia",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "ILD",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Tuberculosis",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Lung",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "cancer",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Pleural",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "effusion",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Image-",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "only",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.805",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.802,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.808)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.847",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.845,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.851)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.746 (0.743,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.748)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.789 (0.786,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.791)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.845",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.843,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.848)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.799",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.796,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.801)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.769 (0.765,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.772)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.825",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.821,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.830)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.819",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.817,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.822)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Early",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Fusion",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.835",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.832,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.839)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.895",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.893,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.898)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.772 (0.768,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.775)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.810 (0.807,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.812)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.873",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.870,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.875)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.824",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.822,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.827)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.793 (0.791,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.796)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.871",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.868,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.875)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.842",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.839,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.845)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Late",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Fusion",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.826",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.823,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.828)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.888",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.885,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.890)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.765 (0.763,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.767)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.822 (0.820,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.825)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.870",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.868,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.872)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.804",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.802,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.805)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.770 (0.767,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.772)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.839",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.836,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.841)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.850",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.847,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.852)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "GIT",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.848",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.844,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.850)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.911",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.907,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.913)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.798 (0.796,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.800)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.824 (0.821,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.827)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.895",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.893,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.898)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.819",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.816,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.821)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.807 (0.804,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.810)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.872",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.871,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.873)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.858",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.855,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.860)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Perceiver",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.858",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.855,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.861)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.910",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.907,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.912)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.788 (0.784,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.791)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.846 (0.842,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.850)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.903",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.901,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.906)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.830",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.827,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.833)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.825 (0.823,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.828)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.890",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.887,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.892)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.872",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.869,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.874)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "IRENE",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.924",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.921,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.926)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.922",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.920,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.925)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.907 (0.903,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.910)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.954 (0.952,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.957)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.921",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.918,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.923)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.934",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.929,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.937)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.918 (0.917,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.921)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.914",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.911,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.917)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.924",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "(0.921,",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "0.926)",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "Method",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Mean",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Admission to ICU",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Need for MV",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Death",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Image-only",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.307 (0.237, 0.391)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.482 (0.355, 0.636)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.247 (0.136, 0.398)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.192 (0.073, 0.333)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Early Fusion",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.521 (0.435, 0.614)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.665 (0.548, 0.774)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.551 (0.397, 0.699)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.346 (0.174, 0.544)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Late Fusion",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.503 (0.422, 0.598)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.647 (0.535, 0.759)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.533 (0.388, 0.685)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.330 (0.164, 0.531)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "GIT",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.514 (0.442, 0.605)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.653 (0.546, 0.743)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.554 (0.411, 0.702)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.335 (0.168, 0.554)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Perceiver",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.526 (0.448, 0.611)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.652 (0.529, 0.771)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.566 (0.406, 0.715)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.360 (0.201, 0.543)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "IRENE",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.592 (0.500, 0.682)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.712 (0.587, 0.834)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.624 (0.473, 0.754)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "0.441 (0.270, 0.617)",
+      "page": 19
+    },
+    {
+      "level": "H3",
+      "text": "Row",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "HA (2)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "HA (0)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "HA (6)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Uni-",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "direction",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Image",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "ChiComp",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "LabTest",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Tokenization",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Mean",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.924 (0.921,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.926)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "1",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.858 (0.850,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.867)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "2",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.905 (0.899,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.910)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "3",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.884 (0.880,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.888)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "4",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.860 (0.855,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.864)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "5",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.882 (0.873,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.891)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "6",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.894 (0.886,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.900)",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "7",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "√",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.543 (0.525,",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "0.569)",
+      "page": 20
+    }
+  ]
+}
