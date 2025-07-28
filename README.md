@@ -1,8 +1,4 @@
-Absolutely! Here's the **complete `README.md`** file — just copy and paste it into your project.
 
----
-
-```markdown
 # 🧠 Round-1A — Adobe India Hackathon
 
 ## 📌 Problem Statement
